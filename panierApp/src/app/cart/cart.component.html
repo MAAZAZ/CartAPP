@@ -1,0 +1,24 @@
+<div class="col-md-12" *ngIf="cart">
+  <h2 style="margin: auto"> Your cart</h2>
+  <div class="text-right my-4">
+    <button class="btn btn-outline-info">Payment : {{cart.pricetotal}} DH</button>
+  </div>
+  <table class="table table-striped text-center">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products | keyvalue">
+      <td>
+        {{product.key}}
+      </td>
+      <td>
+        <strong>X {{product.value}}</strong>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

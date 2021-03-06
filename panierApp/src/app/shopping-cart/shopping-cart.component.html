@@ -1,0 +1,17 @@
+<div class="container col-8 card text-center" *ngIf="product">
+  <h5 class="card-header">Product : {{product.name}}</h5>
+  <h6 class="card-subtitle mb-2 my-2 text-muted">Unit price : {{product.price}} DH</h6>
+  <div *ngIf="product" class="card-body">
+    <form #f="ngForm" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-md-12">
+          <label for="qte" >Quantity :</label>
+          <input type="number" #qte="ngModel" id="qte" name="qte" [(ngModel)]="commandLine.qte" class="form-control">
+        </div>
+        <div class="col-md-12 my-4 text-right">
+          <button class="btn btn-outline-success" type="submit">ADD TO YOUR CART</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
