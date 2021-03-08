@@ -24,6 +24,7 @@ public class DemoApplication {
                             RepositoryRestConfiguration repositoryRestConfiguration) {
         return args -> {
             repositoryRestConfiguration.exposeIdsFor(Cart.class);
+            repositoryRestConfiguration.exposeIdsFor(CommandLine.class);
             repositoryRestConfiguration.exposeIdsFor(Product.class);
             Product product1=productRepository.save(new Product(null, "Iphone 6", 5000, null));
             productRepository.save(new Product(null, "Samsung 7", 4000, null));

@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
 
   public cart:any;
   public commandLines:any;
-  public products:Map<any, any>=new Map();
+  public products:Map<Object, number>=new Map();
 
   constructor(private productService : ProductService, private commandLineService: CommandLineService, private cartService: CartService) { }
 
@@ -34,8 +34,21 @@ export class CartComponent implements OnInit {
     })
   }
 
-  someFunction(arr: any[]){
-    return arr.map(o => o.property);
+  deleteCommand(productName: any){
+    this.commandLines._embedded.commandLines.forEach((command: any)=>{
+      let commandLine:any= command;
+      this.productService.getByUrl(commandLine._links.product.href).subscribe(product=>{
+        let productItem:any=product;
+        if(productItem.name==productName) {
+          // @ts-ignore
+          this.cart.pricetotal = this.cart.pricetotal - productItem.price*this.products.get(productName);
+              this.cartService.update(1, this.cart).subscribe(data=>{});
+              this.commandLineService.delete(commandLine.id).subscribe(data=>{
+                window.location.reload()
+              })
+        }
+      })
+    })
   }
 
 }
